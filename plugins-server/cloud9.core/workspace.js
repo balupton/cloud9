@@ -43,7 +43,7 @@ var Workspace = module.exports = function(ide) {
             if (server_exclude[name]) continue;
 
             var plugin = this.plugins[name];
-            var hooks = plugin.getHooks();
+            var hooks = plugin.getHooks && plugin.getHooks() || [];
             if (hooks.indexOf(hook) > -1 && plugin[hook].apply(plugin, args) === true) {
                 return;
             }
